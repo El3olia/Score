@@ -480,6 +480,14 @@ function readTextFile(file, callback) {
   rawFile.send(null);
 }
 $(document).ready(function() {
+	fetch('Scores.json')
+  .then(response => response.json())
+  .then(data => {
+    // Handle the JSON data here
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
 	// DataTable initialisation
     var table = new DataTable('#example', {
         language: {
