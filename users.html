@@ -1,0 +1,46 @@
+<html dir="rtl">
+    <head>
+      <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> El3olya Score Users</title>
+    <link rel="stylesheet" type="text/css" href="el3olya.css">
+    <link rel="stylesheet" type="text/css" href="users.css">
+	 <link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" /> -->
+    </head>
+    <body>
+          
+<header class="header-fixed">
+
+	<div class="header-limiter">
+
+		<h1><a href="#">El3olya<span class="score">Score</span></a></h1>
+		<nav>
+			<a href="index.html" class="navItem" onclick="itemClicked(this)">الرئيسيه</a>
+			<a href="users.html" class="navItem" onclick="itemClicked(this)">الخدام</a>
+			<a href="trtiby.html" class="navItem" onclick="itemClicked(this)">ترتيبى</a>
+			<a href="#" class="navItem" onclick="itemClicked(this)">عن الخدمه</a>
+		</nav>
+
+	</div>
+    <div class="header-fixed-placeholder"></div>
+</header>
+        <div class="container">
+            <div class="row">
+              <div class="search">
+                <label>البحث</label>
+                <input type="search" data-search="data-search" placeholder="البحث ..."/>
+                <button class="search__clear">&times;</button>
+                <div class="recent-search">
+                  <div class="recent-search__list"></div>
+                </div>
+              </div>
+              <div class="list" id="list" data-searchable="data-searchable"></div>
+            </div>
+          </div>
+    </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="el3olya.js"></script> -->
+<script type="text/javascript" src="user.js"></script>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> El3olya Score</title>
+    <link rel="stylesheet" type="text/css" href="el3olya.css">
+	<link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+  
+</head>
+<body>
+    
+<header class="header-fixed">
+
+	<div class="header-limiter">
+
+		<h1><a href="#">El3olya<span>Score</span></a></h1>
+		<nav>
+			<a href="el3olya.html" class="navItem" onclick="itemClicked(this)">الرئيسيه</a>
+			<a href="users.html" class="navItem" onclick="itemClicked(this)">الخدام</a>
+			<a href="trtiby.html" class="navItem" onclick="itemClicked(this)">ترتيبى</a>
+			<a href="#" class="navItem" onclick="itemClicked(this)">عن الخدمه</a>
+		</nav>
+
+	</div>
+    <div class="header-fixed-placeholder"></div>
+</header>
+    <div class="main-container">
+        <div class="teamy-team">
+            <div class="scroller">
+                <div class="scroller__item"> 
+                    <div class="teamy teamy_mask-triangle teamy_zoom-slide-photo" aria-labelledby="person2">
+                        <div class="teamy__content" id="person2">
+                            <span class="teamy__name">مجموعه بطرس الرسول</span>
+                            <span class="teamy__post">الصياد</span>
+                        </div>					
+                        <div class="teamy__layout">
+                            <div class="teamy__front">
+                                <img src="download2.jpg" class="teamy__avatar" alt="Dora Caelan's photo">
+                            </div>
+                            <div class="teamy__back">
+                                <div class="teamy__back-content">
+                                    <button class="teamy__open r-button" id="botros" onclick="openDialog('popup-article', this)">
+                                        <span class="button">المزيد</span> 
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroller__item"> 
+                    <div class="teamy teamy_mask-triangle teamy_zoom-slide-photo" aria-labelledby="person3">
+                        <div class="teamy__content" id="person3">
+                            <span class="teamy__name">مجموعه أندراوس الرسول</span>
+                            <span class="teamy__post">Illustrator</span>
+                        </div>					
+                        <div class="teamy__layout">
+                            <div class="teamy__front">
+                                <img src="download.jpg" class="teamy__avatar" alt="Rosanna Pattie's photo">
+                            </div>
+                            <div class="teamy__back">
+                                <div class="teamy__back-content">
+                                    <button class="teamy__open r-button" id="andrawos" onclick="openDialog('popup-article', this)">
+                                        <span class="button">المزيد</span> 
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroller__item"> 
+                    <div class="teamy teamy_mask-triangle teamy_zoom-slide-photo" aria-labelledby="person4">
+                        <div class="teamy__content" id="person4">
+                            <span class="teamy__name">مجموعه مرقس الرسول</span>
+                            <span class="teamy__post"></span>
+                        </div>
+                        <div class="teamy__layout">
+                            <div class="teamy__front">
+                                <img src="download3.jpg" class="teamy__avatar" alt="Rose Alpha's photo">
+                            </div>
+                            <div class="teamy__back">
+                                <div class="teamy__back-content">
+                                    <button class="teamy__open r-button" id="markos" onclick="openDialog('popup-article', this)">
+                                        <span class="button">المزيد</span> 
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroller__item">         
+                    <div class="teamy teamy_mask-triangle teamy_zoom-slide-photo"  aria-labelledby="person6">
+                        <div class="teamy__content" id="person6">
+                            <span class="teamy__name">مجموعه يوحنا الحبيب</span>
+                            <span class="teamy__post">العشار</span>
+                        </div>
+                        <div class="teamy__layout">
+                            <div class="teamy__front">
+                                <img src="download2.jpg" class="teamy__avatar" alt="Stas Melnikov's photo">
+                            </div>
+                            <div class="teamy__back">
+                                <div class="teamy__back-content">
+                                    <button class="teamy__open r-button" id="youhana" onclick="openDialog('popup-article', this)">
+                                        <span class="button">المزيد</span> 
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroller__item">         
+                    <div class="teamy teamy_mask-triangle teamy_zoom-slide-photo"  aria-labelledby="person7">
+                        <div class="teamy__content" id="person7">
+                            <span class="teamy__name">مجموعه متى الرسول</span>
+                            <span class="teamy__post">Photomodel</span>
+                        </div>    
+                        <div class="teamy__layout">
+                            <div class="teamy__front">
+                                <img src="download.jpg" class="teamy__avatar" alt="Lise Laurie's photo">
+                            </div>
+                            <div class="teamy__back">
+                                <div class="teamy__back-content">
+                                    <button class="teamy__open r-button" id="matthew" onclick="openDialog('popup-article', this)">
+                                        <span class="button">المزيد</span> 
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroller__item">         
+                    <div class="teamy teamy_mask-triangle teamy_zoom-slide-photo" aria-labelledby="person8">
+                        <div class="teamy__content" id="person8">
+                            <span class="teamy__name">مجموعه لوقا الرسول</span>
+                            <span class="teamy__post">الطبيب</span>
+                        </div>
+                        <div class="teamy__layout">
+                            <div class="teamy__front">
+                                <img src="download3.jpg" class="teamy__avatar" alt="Effie Eleanora's photo">
+                            </div>
+                            <div class="teamy__back">
+                                <div class="teamy__back-content">
+                                    <button class="teamy__open r-button" id="louca" onclick="openDialog('popup-article', this)">
+                                        <span class="button">المزيد</span> 
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="popup-article" role="dialog" aria-labelledby="dialog_title" aria-modal="true">
+        <div class="popup">
+            <div class="popup__container">
+                <div class="popup__content">
+                    <h2 id="dialog_title" class="neonText">مجموعه متى الرسول</h2>
+                    <p id="dialog_title" class="neonText">الصياد</p>
+<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+	<thead>
+		<tr>
+			<th class=".th">الاسم</th>
+			<th class=".th">20/10/2023 </th>
+			<th class=".th">27/10/2023</th>
+			<th class=".th">3/11/2023</th>
+			<th class=".th">10/11/2023</th>
+            <th class=".th">10/11/2023</th>
+			<th class=".th">20/10/2023 </th>
+			<th class=".th">27/10/2023</th>
+			<th class=".th">3/11/2023</th>
+			<th class=".th">10/11/2023</th>
+		</tr>
+	</thead>
+	<tfoot>
+		<tr>
+			<td>المجموع</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td>1000</td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tfoot>
+	<tbody>
+		<tr>
+			<td>بافلى</td>
+			<td>60</td>
+			<td>60</td>
+			<td>60</td>
+			<td>60</td>
+            <td>60</td>
+			<td>60</td>
+			<td>60</td>
+			<td>60</td>
+			<td>60</td>
+		</tr>
+		<tr>
+			<td>مينا</td>
+			<td>60</td>
+			<td>60</td>
+			<td>60</td>
+			<td>60</td>
+			<td>60</td>
+            <td>60</td>
+			<td>60</td>
+			<td>60</td>
+			<td>60</td>
+
+		</tr>
+		<tr>
+			<td>ميرنا</td>
+			<td>1</td>
+			<td>60</td>
+			<td>60</td>
+			<td>60</td>
+            <td>60</td>
+			<td>60</td>
+			<td>60</td>
+			<td>60</td>
+			<td>60</td>
+		</tr>
+		<tr>
+			<td>بافلى</td>
+			<td>60</td>
+			<td>60</td>
+			<td>60</td>
+			<td>60</td>
+            <td>60</td>
+			<td>60</td>
+			<td>60</td>
+			<td>60</td>
+			<td>60</td>
+		</tr>
+	</tbody>
+</table>
+                </div>
+                <button type="button" class="r-button popup__close" onclick="closeDialog(this)">
+                    <span class="popup__close-text">اغلاق</span> 
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="el3olya.js"></script>
+</html>
