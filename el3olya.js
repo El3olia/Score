@@ -483,6 +483,7 @@ $(document).ready(function() {
 	fetch('Scores.json')
   .then(response => response.json())
   .then(data => {
+	  console.log('json ',data);
     // Handle the JSON data here
   })
   .catch(error => {
