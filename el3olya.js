@@ -301,9 +301,9 @@ aria.Utils = aria.Utils || {};
   }; // end trapFocus
 
   window.openDialog = function (dialogId, element, focusFirst) {
-    console.log(dialogId);
     console.log(element.id);
-    console.log(focusFirst);
+    renderModalData(element.id);
+
 
 
     new aria.Dialog(dialogId, element, focusFirst);
@@ -460,11 +460,11 @@ aria.Utils.bindMethods = function (object /* , ...methodNames */) {
 };
 
 function itemClicked(element) {
-    // console.log(event);
-    document.querySelectorAll('.navItem').forEach(el => {
-        el.classList.remove('selected');
-    })
-    element.classList.add('selected');
+  // console.log(event);
+  document.querySelectorAll('.navItem').forEach(el => {
+    el.classList.remove('selected');
+  })
+  element.classList.add('selected');
 }
 
 
@@ -472,30 +472,120 @@ function readTextFile(file, callback) {
   var rawFile = new XMLHttpRequest();
   rawFile.overrideMimeType("application/json");
   rawFile.open("GET", file, true);
-  rawFile.onreadystatechange = function() {
-      if (rawFile.readyState === 4 && rawFile.status == "200") {
-          callback(rawFile.responseText);
-      }
+  rawFile.onreadystatechange = function () {
+    if (rawFile.readyState === 4 && rawFile.status == "200") {
+      callback(rawFile.responseText);
+    }
   }
   rawFile.send(null);
 }
-$(document).ready(function() {
-	fetch('Scores.json')
-  .then(response => response.json())
-  .then(data => {
-	  console.log('json ',data);
-    // Handle the JSON data here
-  })
-  .catch(error => {
-    console.error('Error:', error);
+$(document).ready(function () {
+  // DataTable initialisation
+
+});
+function renderModalData(id) {
+  const groups = [
+    {
+      Id: 1,
+      Name: "مجموعة القديس متي الرسول",
+      Header: [
+        "الاسم",
+        "27/10",
+        "3/11"
+      ],
+      Servants: [
+        {
+          Points: [
+            "بافلي فايز",
+            "10",
+            "15"
+          ]
+        },
+        {
+          Points: [
+            "ميرنا نشأت",
+            "20",
+            "25"
+          ]
+        }
+      ]
+    },
+    {
+      Id: 2,
+      Name: "مجموعة القديس اندراوس الرسول",
+      Header: [
+        "الاسم",
+        "27/10",
+        "44996"
+      ],
+      Servants: [
+        {
+          Points: [
+            "بيتر كرمي",
+            "10",
+            "15"
+          ]
+        },
+        {
+          Points: [
+            "نهي وديع",
+            "20",
+            "25"
+          ]
+        }
+      ]
+    }
+  ];
+  //group name
+  document.getElementById('dialog_title').innerHTML = groups[id - 1].Name;
+  var titleArray = [];
+  let dataArr = [];
+  // const rowArr = [];
+  $.each(groups[id - 1].Header, function (index, value) {
+    var temp = {};
+    temp['title'] = value;
+    titleArray.push(temp);
   });
-	// DataTable initialisation
-    var table = new DataTable('#example', {
+
+  $.each(groups[id - 1].Servants, function (index, value) {
+    let rowArr = [];
+    $.each(groups[id - 1].Servants[index].Points, function (dataIndex, value) {
+      rowArr.push(value);
+      // rowArr.push(groups[id - 1].Header[0] : value );
+    });
+    dataArr.push(rowArr);
+  });
+
+  if ($.fn.dataTable.isDataTable('#example')) {
+    // table.destroy();
+    $('#example').DataTable(
+      {
+        destroy: true,
         language: {
-            url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/ar.json',
+          url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/ar.json',
         },
         scrollX: true,
         scrollY: 200,
-        paging:10
+        paging: 10,
+        columns: titleArray,
+        data: dataArr,
+        "bLengthChange": false, //thought this line could hide the LengthMenu
+      }
+    );
+  }
+  else {
+    var table1 = new DataTable('#example', {
+      language: {
+        url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/ar.json',
+      },
+      scrollX: true,
+      scrollY: 200,
+      paging: 10,
+      columns: titleArray,
+      data: dataArr,
+      "bLengthChange": false, //thought this line could hide the LengthMenu
     });
-});
+  }
+
+}
+

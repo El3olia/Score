@@ -6,6 +6,10 @@
 	overflow: hidden;
 	isolation: isolate;
     padding: 16px;
+	/* height: 350px;
+	 */
+	height: 350px !important;
+
 }
 
 .teamy__layout::before{
@@ -117,7 +121,7 @@ TEAMY ANIMATIONS
 		transition-duration: .6s;
 	}
 	.navItem:hover {
-		color: #0E4C92;
+		color: #0E4C92 !important;
 	}
 
 	/* triangle */
@@ -715,3 +719,6 @@ thead th {
 .dataTables_filter {
 	margin-bottom: 16px;
 }
+table.dataTable thead > tr > th,
+table.dataTable tbody > tr > td
+{text-align: right;}

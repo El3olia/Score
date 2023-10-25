@@ -168,6 +168,8 @@ TEAMY CORE STYLES
 	overflow: hidden;
 	isolation: isolate;
     padding: 16px;
+	height: 350px !important;
+
 }
 
 .teamy__layout::before{
@@ -1129,3 +1131,6 @@ ol, ul {
 
 
 
+
+ 
+  

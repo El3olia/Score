@@ -119,8 +119,8 @@
 }
 .search__clear {
   position: absolute;
-  top: 5.3rem;
-  right: 1rem;
+  top: 5.8rem;
+  left: 1rem;
   cursor: pointer;
   background: #e1e4ea;
   width: 2rem;
