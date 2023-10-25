@@ -1,66 +1,10 @@
 const list = document.getElementById("list");
-const data = [
-    {
-        name:'ميرنا نشأت',
-        picture:'./download.jpg',
-        phone: '01020847865',
-        groupName:'مجموعه متى الرسول',
-        serviceName:'اعدادى بنات'
-    },
-    {
-        name:'ميرنا نشأت',
-        picture:'./download.jpg',
-        phone: '01020847865',
-        groupName:'مجموعه متى الرسول',
-        serviceName:'اعدادى بنات'
-    }, {
-        name:'ميرنا نشأت',
-        picture:'./download.jpg',
-        phone: '01020847865',
-        groupName:'مجموعه متى الرسول',
-        serviceName:'اعدادى بنات'
-    }, {
-        name:'ميرنا نشأت',
-        picture:'./download.jpg',
-        phone: '01020847865',
-        groupName:'مجموعه متى الرسول',
-        serviceName:'اعدادى بنات'
-    }, {
-        name:'ميرنا نشأت',
-        picture:'./download.jpg',
-        phone: '01020847865',
-        groupName:'مجموعه متى الرسول',
-        serviceName:'اعدادى بنات'
-    }, {
-        name:'ميرنا نشأت',
-        picture:'./download.jpg',
-        phone: '01020847865',
-        groupName:'مجموعه متى الرسول'
-    }, {
-        name:'ميرنا نشأت',
-        picture:'./download.jpg',
-        phone: '01020847865',
-        groupName:'مجموعه متى الرسول'
-    }, {
-        name:'بافلى فايز',
-        picture:'./download.jpg',
-        phone: '01020847865',
-        groupName:'مجموعه متى الرسول'
-    }, {
-        name:'بافلى فايز',
-        picture:'./download.jpg',
-        phone: '01020847865',
-        groupName:'مجموعه متى الرسول'
-    }, {
-        name:'بافلى فايز',
-        picture:'./download.jpg',
-        phone: '01280211931',
-        groupName:'مجموعه متى الرسول'
-    },
-];
-
-data.forEach(listItem => {
-list.innerHTML += `
+fetch('members.json')
+    .then(response => response.json())
+    .then(data => {
+        // Handle the JSON data here
+        data.forEach(listItem => {
+            list.innerHTML += `
 			<a class="list-item zoom-in-out" href="#">
 			  <div class="list-item__avatar ">
 			    <img src="${listItem.picture}" />
@@ -73,22 +17,26 @@ list.innerHTML += `
 					</div>
 			</a>
  `
-});
+        });
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 // Search
 const userSearch = document.querySelector("[data-search]");
 
 userSearch.addEventListener("keyup", filter);
 
 function filter() {
-	var term = document.querySelector("[data-search]").value.toLowerCase();
-	var tag = document.querySelectorAll("[data-searchable] .list-item");
-	for (i = 0; i < tag.length; i++) {
-		if (tag[i].innerHTML.indexOf(term) !== -1) {
-			tag[i].style.display = "flex";
-		} else {
-			tag[i].style.display = "none";
-		}
-	}
+    var term = document.querySelector("[data-search]").value.toLowerCase();
+    var tag = document.querySelectorAll("[data-searchable] .list-item");
+    for (i = 0; i < tag.length; i++) {
+        if (tag[i].innerHTML.indexOf(term) !== -1) {
+            tag[i].style.display = "flex";
+        } else {
+            tag[i].style.display = "none";
+        }
+    }
 }
 
 const recentSearch = document.querySelector(".recent-search");
@@ -99,35 +47,35 @@ const clearBtn = document.querySelector(".clear-btn");
 const clearSearch = document.querySelector('.search__clear');
 
 clearSearch.addEventListener('click', () => {
-	userSearch.value = "";
-	filter();
+    userSearch.value = "";
+    filter();
 })
 
 userSearch.addEventListener("keydown", event => {
-	const keyName = event.key;
-	if (event.key == "Enter") {
-		let inputText = userSearch.value.toLowerCase();
-		recentSearchList.insertAdjacentHTML(
-			"beforeend",
-			`<span class="search-item" onclick="labelSearch('${inputText}')">${inputText}<span class="search-item__close">×</span></span>`
-		);
-		if (recentSearchList.childNodes.length > 0) {
-			clearBtn.innerHTML = "Clear Items";
-			clearBtn.removeAttribute("disabled");
-			var btn = document.querySelectorAll(".search-item__close");
+    const keyName = event.key;
+    if (event.key == "Enter") {
+        let inputText = userSearch.value.toLowerCase();
+        recentSearchList.insertAdjacentHTML(
+            "beforeend",
+            `<span class="search-item" onclick="labelSearch('${inputText}')">${inputText}<span class="search-item__close">×</span></span>`
+        );
+        if (recentSearchList.childNodes.length > 0) {
+            clearBtn.innerHTML = "Clear Items";
+            clearBtn.removeAttribute("disabled");
+            var btn = document.querySelectorAll(".search-item__close");
 
-			for (var i = 0; i < btn.length; i++) {
-				btn[i].addEventListener("click",function(e) {
-						e.currentTarget.parentNode.remove();
-					},false
-				);
-			}
-		}
-	} else {
-	}
+            for (var i = 0; i < btn.length; i++) {
+                btn[i].addEventListener("click", function (e) {
+                    e.currentTarget.parentNode.remove();
+                }, false
+                );
+            }
+        }
+    } else {
+    }
 });
 
 function labelSearch(x) {
-	userSearch.value = x;
-	filter();
+    userSearch.value = x;
+    filter();
 }

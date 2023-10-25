@@ -1,61 +1,67 @@
-{
-    "members" : [
-        {
-            "name":"ميرنا نشأت",
-            "picture":"./download.jpg",
-            "phone": "01020847865",
-            "groupName":"مجموعه متى الرسول",
-            "serviceName":"اعدادى بنات"
-        },
-        {
-            "name":"ميرنا نشأت",
-            "picture":"./download.jpg",
-            "phone": "01020847865",
-            "groupName":"مجموعه متى الرسول",
-            "serviceName":"اعدادى بنات"
-        }, {
-            "name":"ميرنا نشأت",
-            "picture":"./download.jpg",
-            "phone": "01020847865",
-            "groupName":"مجموعه متى الرسول",
-            "serviceName":"اعدادى بنات"
-        }, {
-            "name":"ميرنا نشأت",
-            "picture":"./download.jpg",
-            "phone": "01020847865",
-            "groupName":"مجموعه متى الرسول",
-            "serviceName":"اعدادى بنات"
-        }, {
-            "name":"ميرنا نشأت",
-            "picture":"./download.jpg",
-            "phone": "01020847865",
-            "groupName":"مجموعه متى الرسول",
-            "serviceName":"اعدادى بنات"
-        }, {
-            "name":"ميرنا نشأت",
-            "picture":"./download.jpg",
-            "phone": "01020847865",
-            "groupName":"مجموعه متى الرسول"
-        }, {
-            "name":"ميرنا نشأت",
-            "picture":"./download.jpg",
-            "phone": "01020847865",
-            "groupName":"مجموعه متى الرسول"
-        }, {
-            "name":"بافلى فايز",
-            "picture":"./download.jpg",
-            "phone": "01020847865",
-            "groupName":"مجموعه متى الرسول"
-        }, {
-            "name":"بافلى فايز",
-            "picture":"./download.jpg",
-            "phone": "01020847865",
-            "groupName":"مجموعه متى الرسول"
-        }, {
-            "name":"بافلى فايز",
-            "picture":"./download.jpg",
-            "phone": "01280211931",
-            "groupName":"مجموعه متى الرسول"
-        }
-    ]
-}
+[
+    {
+        "name": "ناردين نشأت",
+        "picture": "./download.jpg",
+        "phone": "01020847865",
+        "groupName": "مجموعه متى الرسول",
+        "serviceName": "اعدادى بنات"
+    },
+    {
+        "name": "ميرنا نشأت",
+        "picture": "./download.jpg",
+        "phone": "01020847865",
+        "groupName": "مجموعه متى الرسول",
+        "serviceName": "اعدادى بنات"
+    },
+    {
+        "name": "ميرنا نشأت",
+        "picture": "./download.jpg",
+        "phone": "01020847865",
+        "groupName": "مجموعه متى الرسول",
+        "serviceName": "اعدادى بنات"
+    },
+    {
+        "name": "ميرنا نشأت",
+        "picture": "./download.jpg",
+        "phone": "01020847865",
+        "groupName": "مجموعه متى الرسول",
+        "serviceName": "اعدادى بنات"
+    },
+    {
+        "name": "ميرنا نشأت",
+        "picture": "./download.jpg",
+        "phone": "01020847865",
+        "groupName": "مجموعه متى الرسول",
+        "serviceName": "اعدادى بنات"
+    },
+    {
+        "name": "ميرنا نشأت",
+        "picture": "./download.jpg",
+        "phone": "01020847865",
+        "groupName": "مجموعه متى الرسول"
+    },
+    {
+        "name": "ميرنا نشأت",
+        "picture": "./download.jpg",
+        "phone": "01020847865",
+        "groupName": "مجموعه متى الرسول"
+    },
+    {
+        "name": "بافلى فايز",
+        "picture": "./download.jpg",
+        "phone": "01020847865",
+        "groupName": "مجموعه متى الرسول"
+    },
+    {
+        "name": "بافلى فايز",
+        "picture": "./download.jpg",
+        "phone": "01020847865",
+        "groupName": "مجموعه متى الرسول"
+    },
+    {
+        "name": "بافلى فايز",
+        "picture": "./download.jpg",
+        "phone": "01280211931",
+        "groupName": "مجموعه متى الرسول"
+    }
+]
