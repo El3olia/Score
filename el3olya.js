@@ -479,63 +479,65 @@ function renderModalData(id) {
       // Handle the JSON data here
       groups = data
       console.log(groups)
+      //render data 
+      //group name
+      document.getElementById('dialog_title').innerHTML = groups[id - 1].Name;
+      var titleArray = [];
+      let dataArr = [];
+      // const rowArr = [];
+      $.each(groups[id - 1].Header, function (index, value) {
+        var temp = {};
+        temp['title'] = value;
+        titleArray.push(temp);
+      });
+
+      $.each(groups[id - 1].Servants, function (index, value) {
+        let rowArr = [];
+        $.each(groups[id - 1].Servants[index].Points, function (dataIndex, value) {
+          rowArr.push(value);
+          // rowArr.push(groups[id - 1].Header[0] : value );
+        });
+        dataArr.push(rowArr);
+      });
+
+      if ($.fn.dataTable.isDataTable('#example')) {
+        // table.destroy();
+        $('#example').DataTable(
+          {
+            destroy: true,
+            language: {
+              url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/ar.json',
+            },
+            scrollX: true,
+            scrollY: 200,
+            paging: 10,
+            columns: titleArray,
+            data: dataArr,
+            "bLengthChange": false, //thought this line could hide the LengthMenu     
+            "bInfo": false
+
+          }
+        );
+      }
+      else {
+        var table1 = new DataTable('#example', {
+          language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/ar.json',
+          },
+          scrollX: true,
+          scrollY: 200,
+          paging: 10,
+          columns: titleArray,
+          data: dataArr,
+          "bLengthChange": false, //thought this line could hide the LengthMenu
+          "bInfo": false
+        });
+      }
     })
     .catch(error => {
       console.error('Error:', error);
     });
-  //group name
-  document.getElementById('dialog_title').innerHTML = groups[id - 1].Name;
-  var titleArray = [];
-  let dataArr = [];
-  // const rowArr = [];
-  $.each(groups[id - 1].Header, function (index, value) {
-    var temp = {};
-    temp['title'] = value;
-    titleArray.push(temp);
-  });
 
-  $.each(groups[id - 1].Servants, function (index, value) {
-    let rowArr = [];
-    $.each(groups[id - 1].Servants[index].Points, function (dataIndex, value) {
-      rowArr.push(value);
-      // rowArr.push(groups[id - 1].Header[0] : value );
-    });
-    dataArr.push(rowArr);
-  });
-
-  if ($.fn.dataTable.isDataTable('#example')) {
-    // table.destroy();
-    $('#example').DataTable(
-      {
-        destroy: true,
-        language: {
-          url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/ar.json',
-        },
-        scrollX: true,
-        scrollY: 200,
-        paging: 10,
-        columns: titleArray,
-        data: dataArr,
-        "bLengthChange": false, //thought this line could hide the LengthMenu     
-        "bInfo": false
-
-      }
-    );
-  }
-  else {
-    var table1 = new DataTable('#example', {
-      language: {
-        url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/ar.json',
-      },
-      scrollX: true,
-      scrollY: 200,
-      paging: 10,
-      columns: titleArray,
-      data: dataArr,
-      "bLengthChange": false, //thought this line could hide the LengthMenu
-      "bInfo": false
-    });
-  }
 
 }
 
