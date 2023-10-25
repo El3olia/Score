@@ -472,7 +472,7 @@ $(document).ready(function () {
 
 });
 function renderModalData(id) {
-  const groups = [];
+  var groups = [];
   fetch('Scores.json')
     .then(response => response.json())
     .then(data => {
