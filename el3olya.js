@@ -473,7 +473,7 @@ $(document).ready(function () {
 });
 function renderModalData(id) {
   const groups = [];
-  fetch('data.json')
+  fetch('Scores.json')
     .then(response => response.json())
     .then(data => {
       // Handle the JSON data here
