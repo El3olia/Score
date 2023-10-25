@@ -467,75 +467,22 @@ function itemClicked(element) {
   element.classList.add('selected');
 }
 
-
-function readTextFile(file, callback) {
-  var rawFile = new XMLHttpRequest();
-  rawFile.overrideMimeType("application/json");
-  rawFile.open("GET", file, true);
-  rawFile.onreadystatechange = function () {
-    if (rawFile.readyState === 4 && rawFile.status == "200") {
-      callback(rawFile.responseText);
-    }
-  }
-  rawFile.send(null);
-}
 $(document).ready(function () {
   // DataTable initialisation
 
 });
 function renderModalData(id) {
-  const groups = [
-    {
-      Id: 1,
-      Name: "مجموعة القديس متي الرسول",
-      Header: [
-        "الاسم",
-        "27/10",
-        "3/11"
-      ],
-      Servants: [
-        {
-          Points: [
-            "بافلي فايز",
-            "10",
-            "15"
-          ]
-        },
-        {
-          Points: [
-            "ميرنا نشأت",
-            "20",
-            "25"
-          ]
-        }
-      ]
-    },
-    {
-      Id: 2,
-      Name: "مجموعة القديس اندراوس الرسول",
-      Header: [
-        "الاسم",
-        "27/10",
-        "44996"
-      ],
-      Servants: [
-        {
-          Points: [
-            "بيتر كرمي",
-            "10",
-            "15"
-          ]
-        },
-        {
-          Points: [
-            "نهي وديع",
-            "20",
-            "25"
-          ]
-        }
-      ]
-    }
-  ];
+  const groups = [];
+  fetch('data.json')
+    .then(response => response.json())
+    .then(data => {
+      // Handle the JSON data here
+      groups = data
+      console.log(groups)
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
   //group name
   document.getElementById('dialog_title').innerHTML = groups[id - 1].Name;
   var titleArray = [];
@@ -569,7 +516,9 @@ function renderModalData(id) {
         paging: 10,
         columns: titleArray,
         data: dataArr,
-        "bLengthChange": false, //thought this line could hide the LengthMenu
+        "bLengthChange": false, //thought this line could hide the LengthMenu     
+        "bInfo": false
+
       }
     );
   }
@@ -584,6 +533,7 @@ function renderModalData(id) {
       columns: titleArray,
       data: dataArr,
       "bLengthChange": false, //thought this line could hide the LengthMenu
+      "bInfo": false
     });
   }
 
