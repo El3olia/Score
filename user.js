@@ -13,7 +13,6 @@ fetch('members.json')
 					  <strong class="list-item__name">${listItem.name}</strong>
 					  <span class="list-item__info">${listItem.serviceName} <br></span>
 					  <span class="list-item__info">${listItem.groupName} <br></span>
-					  <span class="list-item__info">${listItem.phone} <br></span>
 					</div>
 			</a>
  `
