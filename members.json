@@ -4,9 +4,90 @@
         "picture": "./Images/Members/1.jpg",
         "serviceName": "ثانوي أولاد"
     },
-       {
+    {
         "name": "مينا عدلي",
         "picture": "./Images/Members/2.jpg",
         "serviceName": "إعدادي أولاد"
+    },
+    {
+        "name": "مينا ملاك",
+        "picture": "./Images/Members/3.jpg",
+        "serviceName": "إعدادي أولاد"
+    },
+    {
+        "name": "رفقه عبدالله",
+        "picture": "./Images/Members/4.jpg",
+        "serviceName": "إعدادي بنات"
+    },
+    {
+        "name": "ابانوب ميلاد",
+        "picture": "./Images/Members/5.jpg",
+        "serviceName": "إعدادي أولاد"
+    },
+    {
+        "name": "جرجس ادولف",
+        "picture": "./Images/Members/6.jpg",
+        "serviceName": "إعدادي أولاد"
+    },
+    {
+        "name": "ابانوب ميلاد",
+        "picture": "./Images/Members/7.jpg",
+        "serviceName": "ثانوي أولاد"
+    },
+    {
+        "name": "مارينا محسن",
+        "picture": "./Images/Members/8.jpg",
+        "serviceName": "إعدادي بنات"
+    },
+    {
+        "name": "سهير صلاح",
+        "picture": "./Images/Members/9.jpg",
+        "serviceName": "إعدادي بنات"
+    },
+    {
+        "name": "ساميه ثابت",
+        "picture": "./Images/Members/10.jpg",
+        "serviceName": "إعدادي بنات"
+    },
+    {
+        "name": "شنودة حشمت",
+        "picture": "./Images/Members/11.jpg",
+        "serviceName": "إعدادي أولاد"
+    },
+    {
+        "name": "مارتينا بقطر",
+        "picture": "./Images/Members/12.jpg",
+        "serviceName": "إعدادي بنات"
+    },
+    {
+        "name": "مريم رفعت",
+        "picture": "./Images/Members/13.jpg",
+        "serviceName": "ثانوي بنات"
+    },
+    {
+        "name": "مريم اشرف",
+        "picture": "./Images/Members/14.jpg",
+        "serviceName": "ثانوي بنات"
+    },
+    {
+        "name": "دينا سمير",
+        "picture": "./Images/Members/15.jpg",
+        "serviceName": "إعدادي بنات"
+    },
+    {
+        "name": "ماري قاصد",
+        "picture": "./Images/Members/16.jpg",
+        "serviceName": "إعدادي بنات"
+    },
+    {
+        "name": "انجيل صفوت",
+        "picture": "./Images/Members/17.jpg",
+        "serviceName": "ثانوي بنات"
+    },
+    {
+        "name": "مارينا مرزوق",
+        "picture": "./Images/Members/2.jpg",
+        "serviceName": "ثانوي بنات"
     }
+    
 ]
