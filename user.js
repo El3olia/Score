@@ -12,7 +12,6 @@ fetch('members.json')
 			  <div class="list-item__content">
 					  <strong class="list-item__name">${listItem.name}</strong>
 					  <span class="list-item__info">${listItem.serviceName} <br></span>
-					  <span class="list-item__info">${listItem.groupName} <br></span>
 					</div>
 			</a>
  `
