@@ -88,6 +88,120 @@
         "name": "مارينا مرزوق",
         "picture": "./Images/Members/18.jpg",
         "serviceName": "ثانوي بنات"
-    }
-    
+    },
+    {
+        "name": "ايريني عماد",
+        "picture": "./Images/Members/19.jpg",
+        "serviceName": "ثانوي بنات"
+    },
+    {
+        "name": "مينا مسعد",
+        "picture": "./Images/Members/20.jpg",
+        "serviceName": "ثانوي أولاد"
+    },
+    {
+        "name": "ماريان مدحت",
+        "picture": "./Images/Members/21.jpg",
+        "serviceName": "إعدادي بنات"
+    },
+    {
+        "name": "وفاء شحاته",
+        "picture": "./Images/Members/22.jpg",
+        "serviceName": "إعدادي بنات"
+    },
+    {
+        "name": "هبه نادي",
+        "picture": "./Images/Members/23.jpg",
+        "serviceName": "ثانوي بنات"
+    },
+    {
+        "name": "إبرام ابراهيم",
+        "picture": "./Images/Members/24.jpg",
+        "serviceName": "إعدادي أولاد"
+    },
+    {
+        "name": "ماركو منير",
+        "picture": "./Images/Members/25.jpg",
+        "serviceName": "ثانوي أولاد"
+    },
+    {
+        "name": "بيشوي حارس",
+        "picture": "./Images/Members/26.jpg",
+        "serviceName": "إعدادي أولاد"
+    },
+    {
+        "name": "ولاء كامل",
+        "picture": "./Images/Members/27.jpg",
+        "serviceName": "ثانوي بنات"
+    },
+    {
+        "name": "يوحنا فؤاد",
+        "picture": "./Images/Members/28.jpg",
+        "serviceName": "إعدادي أولاد"
+    },
+    {
+        "name": "ميلاد عدلي",
+        "picture": "./Images/Members/29.jpg",
+        "serviceName": "ثانوي أولاد"
+    },
+    {
+        "name": "سحر هنداوي",
+        "picture": "./Images/Members/30.jpg",
+        "serviceName": "إعدادي بنات"
+    },
+    {
+        "name": "ميلاد عدلي",
+        "picture": "./Images/Members/31.jpg",
+        "serviceName": "ثانوي أولاد"
+    },
+    {
+        "name": "يوستينا يوسف",
+        "picture": "./Images/Members/32.jpg",
+        "serviceName": "ثانوي بنات"
+    },
+    {
+        "name": "ناهد ظريف",
+        "picture": "./Images/Members/33.jpg",
+        "serviceName": "إعدادي بنات"
+    },
+    {
+        "name": "كرستين بخيت",
+        "picture": "./Images/Members/34.jpg",
+        "serviceName": "إعدادي بنات"
+    },
+    {
+        "name": "سماح وهيب",
+        "picture": "./Images/Members/35.jpg",
+        "serviceName": "إعدادي بنات"
+    },
+    {
+        "name": "مارينا اشرف",
+        "picture": "./Images/Members/36.jpg",
+        "serviceName": "إعدادي بنات"
+    },
+    {
+        "name": "نرمين ادور",
+        "picture": "./Images/Members/37.jpg",
+        "serviceName": "إعدادي بنات"
+    },
+    {
+        "name": "مينا ميلاد",
+        "picture": "./Images/Members/38.jpg",
+        "serviceName": "إعدادي أولاد"
+    },
+    {
+        "name": "ايريني رزق",
+        "picture": "./Images/Members/39.jpg",
+        "serviceName": "إعدادي بنات"
+    },
+    {
+        "name": "حنان كمال",
+        "picture": "./Images/Members/40.jpg",
+        "serviceName": "إعدادي بنات"
+    },
+    {
+        "name": "مارسيل مجدي",
+        "picture": "./Images/Members/41.jpg",
+        "serviceName": "إعدادي بنات"
+    }    
 ]
