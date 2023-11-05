@@ -5,9 +5,9 @@ fetch('members.json')
         // Handle the JSON data here
         data.forEach(listItem => {
             list.innerHTML += `
-			<a class="list-item zoom-in-out" href="#">
+			<a class="list-item zoom-in-out">
 			  <div class="list-item__avatar ">
-			    <img src="${listItem.picture}" />
+			    <img class="list-item__img" src="${listItem.picture}" />
 			  </div>
 			  <div class="list-item__content">
 					  <strong class="list-item__name">${listItem.name}</strong>
