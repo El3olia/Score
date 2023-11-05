@@ -246,3 +246,13 @@
 .list-item__img:hover, .list-item__img:active {
   transform: scale(4);
 }
+@media (max-width: 480px){
+  .list-item {
+    width: 60%;
+    margin: auto;
+  }
+  .list-item__img:active {
+    z-index: 100;
+    margin-left: 60px;
+  }
+}
