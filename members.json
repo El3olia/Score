@@ -234,6 +234,7 @@
     {"name": "ميرفت جاد","picture": "./download.jpg","serviceName": "إعدادي بنات"},
     {"name": "هايدي زكريا","picture": "./download.jpg","serviceName": "إعدادي بنات"},
     {"name": "ريموندا اسامة","picture": "./download.jpg","serviceName": "إعدادي بنات"},
+        {"name": "ماري نادي","picture": "./download.jpg","serviceName": "إعدادي بنات"},
     {"name": "هاني لطيف","picture": "./download.jpg","serviceName": "ثانوي اولاد"},
     {"name": "امونيوس القس","picture": "./download.jpg","serviceName": "ثانوي اولاد"},
     {"name": "جورج مجدي","picture": "./download.jpg","serviceName": "ثانوي اولاد"},
@@ -269,7 +270,8 @@
     {"name": "مريم سعيد","picture": "./download.jpg","serviceName": "ثانوي بنات"},
     {"name": "نجوي انور","picture": "./download.jpg","serviceName": "ثانوي بنات"},
     {"name": "نيفين رزق","picture": "./download.jpg","serviceName": "ثانوي بنات"},
-    {"name": "هيام شفيق","picture": "./download.jpg","serviceName": "ثانوي بنات"}
+    {"name": "هيام شفيق","picture": "./download.jpg","serviceName": "ثانوي بنات"},
+        {"name": "نهي وديع","picture": "./download.jpg","serviceName": "اجتماع الخدام"}
 
 ]
 
