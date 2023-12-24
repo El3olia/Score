@@ -510,7 +510,7 @@ function renderModalData(id) {
             },
             scrollX: true,
             scrollY: 200,
-            paging: 20,
+           // paging: 20,
             columns: titleArray,
             data: dataArr,
             "bLengthChange": false, //thought this line could hide the LengthMenu     
@@ -526,7 +526,7 @@ function renderModalData(id) {
           },
           scrollX: true,
           scrollY: 200,
-          paging: 20,
+         // paging: 20,
           columns: titleArray,
           data: dataArr,
           "bLengthChange": false, //thought this line could hide the LengthMenu
