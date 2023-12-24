@@ -508,7 +508,7 @@ function renderModalData(id) {
             language: {
               url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/ar.json',
             },
-            scrollX: true,
+            scrollX: 200,
             scrollY: 400,
             paging: false,
             columns: titleArray,
@@ -524,7 +524,7 @@ function renderModalData(id) {
           language: {
             url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/ar.json',
           },
-          scrollX: true,
+          scrollX: 200,
           scrollY: 400,
           paging: false,
           columns: titleArray,
