@@ -514,8 +514,8 @@ function renderModalData(id) {
             columns: titleArray,
             data: dataArr,
             "bLengthChange": false, //thought this line could hide the LengthMenu     
-            "bInfo": false
-
+            "bInfo": false,
+            "order": [[0, "asc"]], // Replace 0 with the column index you want to sort by
           }
         );
       }
@@ -530,7 +530,8 @@ function renderModalData(id) {
           columns: titleArray,
           data: dataArr,
           "bLengthChange": false, //thought this line could hide the LengthMenu
-          "bInfo": false
+          "bInfo": false,
+          "order": [[0, "asc"]], // Replace 0 with the column index you want to sort by
         });
       }
     })
