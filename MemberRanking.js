@@ -17,21 +17,19 @@ $(document).ready(function () {
             $table.empty(); // Clear existing rows
 
             // Variables to manage ranking with ties
-            let displayedRank = 1;
+            let displayedRank = 1; // The actual rank displayed
+            let rankCounter = 1; // Tracks the rank position in the list
             let lastPoints = null; // Track points of the last ranked servant
-            let skipCount = 1; // Tracks how many people share the same rank
 
             // Render sorted data into the table
             group.Servants.forEach((servant, index) => {
                 const name = servant.Points[0]; // Name is assumed to be the first item in Points array
                 const points = parseInt(servant.Points[1], 10) || 0; // Convert points to integer
 
-                // Check if current points are the same as the last points
+                // Check if the points are the same as the previous entry
                 if (points !== lastPoints) {
-                    displayedRank += skipCount; // Update displayed rank by skipping the count of tied ranks
-                    skipCount = 1; // Reset skip count for the next rank group
-                } else {
-                    skipCount++; // Increment skip count for ties
+                    // Update displayed rank only if points are different
+                    displayedRank = rankCounter;
                 }
 
                 // Medal image based on displayedRank
@@ -55,6 +53,7 @@ $(document).ready(function () {
 
                 // Update tracking variables
                 lastPoints = points;
+                rankCounter++; // Increment rank counter for the next item
             });
         } else {
             console.error("Group with Id 9 not found.");
