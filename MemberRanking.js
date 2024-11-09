@@ -27,7 +27,7 @@ $(document).ready(function () {
 
                 // Update rank only if the current points differ from the last entry's points
                 if (points !== lastPoints) {
-                    displayedRank = index + 1; // Update rank to the current position + 1
+                    displayedRank = displayedRank + 1; // Update rank to the current position + 1
                 }
 
                 // Medal image based on displayedRank
