@@ -1,45 +1,61 @@
 $(document).ready(function () {
-    // Fetch data from JSON file
+    // Fetch data from Scores.json
     $.getJSON('Scores.json', function (data) {
-        // Filter to get the group with Id = 10
-        const group = data.find(group => group.Id === 9);
+        // Find the group with Id = 9
+        const group = data.find(item => item.Id === 9);
 
         if (group) {
-            // Sort the Servants based on points (assuming points are in the second position in the "Points" array)
+            // Sort Servants by points in descending order
             group.Servants.sort((a, b) => {
-                const pointsA = parseInt(a.Points[1]) || 0;
-                const pointsB = parseInt(b.Points[1]) || 0;
-                return pointsB - pointsA; // Descending order
+                const pointsA = parseInt(a.Points[1], 10) || 0; // Convert points to integer
+                const pointsB = parseInt(b.Points[1], 10) || 0;
+                return pointsB - pointsA; // Sort in descending order
             });
 
-            // Render the data in the table
+            // Get the table element in the DOM
             const $table = $('#leaderboard table');
-            $table.empty(); // Clear existing data
+            $table.empty(); // Clear existing rows
 
-            // Loop through sorted Servants and add rows to the table
+            // Variables to manage ranking with ties
+            let currentRank = 1;
+            let lastPoints = null; // Track points of the last ranked servant
+            let displayedRank = 1; // Rank to display, which might skip numbers if there’s a tie
+
+            // Render sorted data into the table
             group.Servants.forEach((servant, index) => {
-                const rank = index + 1;
-                const name = servant.Points[0];
-                const points = servant.Points[1];
+                const name = servant.Points[0]; // Name is assumed to be the first item in Points array
+                const points = parseInt(servant.Points[1], 10) || 0; // Convert points to integer
+
+                // Check if current points are the same as the last points
+                if (points !== lastPoints) {
+                    displayedRank = currentRank; // Update the displayed rank if points are different
+                }
                 
-                const medalImage = rank === 1 ? './Images/Medals/gold.png' :
-                                  rank === 2 ? './Images/Medals/silver.png' :
-                                  rank === 3 ? './Images/Medals/bronze.png' : null;
-                
+                // Medal image based on displayedRank
+                const medalImage = displayedRank === 1 ? './Images/Medals/gold.png' :
+                                  displayedRank === 2 ? './Images/Medals/silver.png' :
+                                  displayedRank === 3 ? './Images/Medals/bronze.png' : null;
+
+                // Build the row HTML
                 const $row = $('<tr>');
-                $row.append(`<td class="number">${rank}</td>`);
+                $row.append(`<td class="number">${displayedRank}</td>`);
                 $row.append(`<td class="name">${name}</td>`);
-                
+
                 if (medalImage) {
                     $row.append(`<td class="points"><img class="gold-medal" src="${medalImage}" alt="medal" /> ${points}</td>`);
                 } else {
                     $row.append(`<td class="points">${points}</td>`);
                 }
-                
+
+                // Append the row to the table
                 $table.append($row);
+
+                // Update tracking variables
+                lastPoints = points;
+                currentRank++; // Always increment currentRank for the next position in the list
             });
         } else {
-            console.error("Group with Id 10 not found.");
+            console.error("Group with Id 9 not found.");
         }
     }).fail(function () {
         console.error("Could not load JSON data.");
