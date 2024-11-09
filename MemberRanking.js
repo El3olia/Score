@@ -26,7 +26,7 @@ $(document).ready(function () {
                 const points = parseInt(servant.Points[1], 10) || 0; // Convert points to integer
 
                 // Update rank only if the current points differ from the last entry's points
-                if (points !== lastPoints) {
+                if (points !== lastPoints && lastPoints != null) {
                     displayedRank = displayedRank + 1; // Update rank to the current position + 1
                 }
 
