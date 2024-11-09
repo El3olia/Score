@@ -18,7 +18,6 @@ $(document).ready(function () {
 
             // Variables to manage ranking with ties
             let displayedRank = 1; // The actual rank displayed
-            let rankCounter = 1; // Tracks the rank position in the list
             let lastPoints = null; // Track points of the last ranked servant
 
             // Render sorted data into the table
@@ -26,10 +25,9 @@ $(document).ready(function () {
                 const name = servant.Points[0]; // Name is assumed to be the first item in Points array
                 const points = parseInt(servant.Points[1], 10) || 0; // Convert points to integer
 
-                // Check if the points are the same as the previous entry
+                // Update rank only if the current points differ from the last entry's points
                 if (points !== lastPoints) {
-                    // Update displayed rank only if points are different
-                    displayedRank = rankCounter;
+                    displayedRank = index + 1; // Update rank to the current position + 1
                 }
 
                 // Medal image based on displayedRank
@@ -53,7 +51,6 @@ $(document).ready(function () {
 
                 // Update tracking variables
                 lastPoints = points;
-                rankCounter++; // Increment rank counter for the next item
             });
         } else {
             console.error("Group with Id 9 not found.");
