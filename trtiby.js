@@ -7,8 +7,8 @@ $(document).ready(function () {
         if (group) {
             // Sort the Servants based on points (assuming points are in the second position in the "Points" array)
             group.Servants.sort((a, b) => {
-                const pointsA = parseInt(a.Points[1]) || 0;
-                const pointsB = parseInt(b.Points[1]) || 0;
+                const pointsA = parseInt(a.Points[0]) || 0;
+                const pointsB = parseInt(b.Points[0]) || 0;
                 return pointsB - pointsA; // Descending order
             });
 
