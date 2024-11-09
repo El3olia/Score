@@ -1,3 +1,51 @@
+$(document).ready(function () {
+    // Fetch data from JSON file
+    $.getJSON('Scores.json', function (data) {
+        // Filter to get the group with Id = 10
+        const group = data.find(group => group.Id === 10);
+
+        if (group) {
+            // Sort the Servants based on points (assuming points are in the second position in the "Points" array)
+            group.Servants.sort((a, b) => {
+                const pointsA = parseInt(a.Points[1]) || 0;
+                const pointsB = parseInt(b.Points[1]) || 0;
+                return pointsB - pointsA; // Descending order
+            });
+
+            // Render the data in the table
+            const $table = $('#leaderboard table');
+            $table.empty(); // Clear existing data
+
+            // Loop through sorted Servants and add rows to the table
+            group.Servants.forEach((servant, index) => {
+                const rank = index + 1;
+                const name = servant.Points[0];
+                const points = servant.Points[1];
+                
+                const medalImage = rank === 1 ? './Images/Medals/gold.png' :
+                                  rank === 2 ? './Images/Medals/silver.png' :
+                                  rank === 3 ? './Images/Medals/bronze.png' : null;
+                
+                const $row = $('<tr>');
+                $row.append(`<td class="number">${rank}</td>`);
+                $row.append(`<td class="name">${name}</td>`);
+                
+                if (medalImage) {
+                    $row.append(`<td class="points"><img class="gold-medal" src="${medalImage}" alt="medal" /> ${points}</td>`);
+                } else {
+                    $row.append(`<td class="points">${points}</td>`);
+                }
+                
+                $table.append($row);
+            });
+        } else {
+            console.error("Group with Id 10 not found.");
+        }
+    }).fail(function () {
+        console.error("Could not load JSON data.");
+    });
+});
+
 setTimeout(function start (){
   
   $('.bar').each(function(i){  
