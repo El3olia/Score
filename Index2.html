@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> El3olya Score</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="el3olya.js"></script>
+<link rel="stylesheet" href="CelebStyle.css"/>
+<script src="CelebScript.js"></script>
+    <link rel="stylesheet" type="text/css" href="el3olya.css">
+	<link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+
+</head>
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  background: #1f2c3a !important;
+  font-family: "Nunito", sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+img {
+  border-radius: 50%;
+  width: clamp(100px, 40vw, 120px);
+  height: clamp(100px, 40vw, 120px);
+  object-fit: cover;
+  object-position: top;
+}
+
+
+
+header {
+  background: linear-gradient(to top, #1f2c3a 0%, #2f3c4742 100%), url("el3oliaPersons.jpeg") no-repeat 50% 50%/cover;
+  width: 100%;
+  min-height: 25em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+}
+header .header-content {
+  width: min(37.5em, 90%);
+  margin-top: 12em;
+  position: relative;
+  z-index: 10;
+}
+header .header-content span {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.063rem;
+  font-size: clamp(0.8rem, 0.7625rem + 0.1875vw, 0.95rem);
+}
+header .header-content h1 {
+  font-size: clamp(1.5rem, 1.375rem + 0.625vw, 2rem);
+  font-weight: 700;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 75em;
+  margin-inline: auto;
+  gap: 0.938rem;
+  transform: translatey(-3em);
+  position: relative;
+  z-index: 10;
+}
+section .card {
+  padding: 1.875em 1.25em;
+  max-width: 18.75rem;
+  width: 90%;
+  height: 16.875rem;
+  background-color: transparent;
+  display: grid;
+  place-content: center;
+  place-items: center;
+  text-align: center;
+  position: relative;
+}
+section .card::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  z-index: -1;
+  border: 0.125rem solid transparent;
+  background: linear-gradient(45deg, #1e272e, #48627a) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+}
+section .card h2 {
+  color: #fff;
+  letter-spacing: 0.05rem;
+  font-size: clamp(1rem, 0.9375rem + 0.3125vw, 1.25rem);
+  margin-top: 0.625em;
+  margin-bottom: 0.188em;
+}
+section .card p {
+  color: #afafaf;
+  font-size: clamp(0.8rem, 0.7625rem + 0.1875vw, 0.95rem);
+}
+section .card-top {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 0.938rem;
+  flex-wrap: wrap;
+}
+section .card-top .card img {
+  width: clamp(120px, 40vw, 150px);
+  height: clamp(120px, 40vw, 150px);
+}
+
+@keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+
+        .card {
+            width: 250px;
+            padding: 25px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease-in-out;
+            overflow: hidden;
+            position: relative;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+
+        .card:hover {
+            transform: translateY(-12px) scale(1.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150%;
+            height: 150%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%) scale(0);
+            border-radius: 50%;
+            transition: transform 0.6s ease;
+        }
+
+
+        .card:hover::before {
+            transform: translate(-50%, -50%) scale(2);
+        }
+
+
+        .card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 5px solid rgba(255, 255, 255, 0.5);
+        }
+
+
+        .card h3 {
+            font-size: 22px;
+            margin: 8px 0;
+            color: #fff;
+        }
+
+
+        .card p {
+            font-size: 16px;
+            color: #ddd;
+        }
+        
+.header-fixed {
+	background-color:#292c2f;
+	box-shadow:0 1px 1px #ccc;
+	padding: 20px 40px;
+	height: 80px;
+	color: #ffffff;
+	box-sizing: border-box;
+	top:-100px;
+
+	-webkit-transition:top 0.3s;
+	transition:top 0.3s;
+}
+
+.header-fixed .header-limiter {
+	max-width: 1200px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+/*	The header placeholder. It is displayed when the header is fixed to the top of the
+	browser window, in order to prevent the content of the page from jumping up. */
+
+.header-fixed-placeholder{
+	height: 80px;
+	display: none;
+}
+
+/* Logo */
+
+.header-fixed .header-limiter h1 {
+	float: left;
+	font: normal 28px Cookie, Arial, Helvetica, sans-serif;
+	line-height: 40px;
+	margin: 0;
+}
+
+.header-fixed .header-limiter h1 span {
+	color: #5383d3;
+}
+
+/* The navigation links */
+
+.header-fixed .header-limiter a {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.header-fixed .header-limiter nav {
+	font:16px Arial, Helvetica, sans-serif;
+	line-height: 40px;
+	float: right;
+}
+
+.header-fixed .header-limiter nav a{
+	display: inline-block;
+	padding: 0 5px;
+	text-decoration:none;
+	color: #ffffff;
+	opacity: 0.9;
+}
+
+.header-fixed .header-limiter nav a:hover{
+	opacity: 1;
+}
+
+.header-fixed .header-limiter nav a.selected {
+	color: #608bd2;
+	pointer-events: none;
+	opacity: 1;
+}
+
+/* Fixed version of the header */
+
+body.fixed .header-fixed {
+	padding: 10px 40px;
+	height: 50px;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+body.fixed .header-fixed-placeholder {
+	display: block;
+}
+
+body.fixed .header-fixed .header-limiter h1 {
+	font-size: 24px;
+	line-height: 30px;
+}
+
+body.fixed .header-fixed .header-limiter nav {
+	line-height: 28px;
+	font-size: 13px;
+}
+
+
+/* Making the header responsive */
+
+@media all and (max-width: 600px) {
+
+	.header-fixed {
+		padding: 20px 0;
+		height: 75px;
+	}
+
+	.header-fixed .header-limiter h1 {
+		float: none;
+		margin: -8px 0 10px;
+		text-align: center;
+		font-size: 24px;
+		line-height: 1;
+	}
+
+	.header-fixed .header-limiter nav {
+		line-height: 1;
+		float:none;
+	}
+
+	.header-fixed .header-limiter nav a {
+		font-size: 13px;
+	}
+
+	body.fixed .header-fixed {
+		display: none;
+	}
+
+}
+@import url('https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap');
+@import url('https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css');
+
+</style>
+
+<header class="header-fixed">
+
+	<div class="header-limiter">
+
+		<h1><a href="#">El3olya<span>Score</span></a></h1>
+		<nav>
+			<a href="index.html" class="navItem" onclick="itemClicked(this)">الرئيسيه</a>
+			<a href="users.html" class="navItem" onclick="itemClicked(this)">الخدام</a>
+			<a href="trtiby.html" class="navItem" onclick="itemClicked(this)">ترتيب المجموعات</a>
+			<a href="#" class="navItem" onclick="itemClicked(this)">عن الخدمه</a>
+		</nav>
+
+	</div>
+    <div class="header-content">
+      <h1>العُلية سكور</h1>
+      <span>يهدف العلية سكور لتكوين روح المنافسة المقدسة بين اعضاء المجموعات</span>
+    </div>
+    <div class="header-fixed-placeholder"></div>
+</header>
+
+<section>
+  <div class="card-top">
+    <div class="card" id="1" onclick="openDialog('popup-article', this)">
+      <img src="Groups/bolles.jpg" alt="Alexandra Smith">
+      <h2>مجموعة القديس بولس الرسول</h2>
+      <!-- <p>Founder and Chief Operations Officer</p> -->
+    </div>
+    <div class="card" id="2" onclick="openDialog('popup-article', this)">
+      <img src="Groups/yohana.jpg" alt="John Smith">
+      <h2>مجموعة القديس يوحنا الحبيب</h2>
+      <!-- <p>Founder and Chief Executive Officer</p> -->
+    </div>
+  </div>
+  <div class="card" id="3" onclick="openDialog('popup-article', this)">
+    <img src="Groups/marcos.jpg" alt="John Smith">
+    <h2>مجموعة القديس مار مرقس الرسول</h2>
+    <!-- <p>Chief Process and Innovation Officer</p> -->
+  </div>
+  <div class="card" id="4" onclick="openDialog('popup-article', this)">
+    <img src="Groups/bolles.jpg" alt="John Smith">
+    <h2>مجموعة القديس برثلماوس الرسول</h2>
+    <!-- <p>Chief Sales Officer</p> -->
+  </div>
+  <div class="card" id="5" onclick="openDialog('popup-article', this)">
+    <img src="Groups/bottross.jpg" alt="John Smith">
+    <h2>مجموعة القديس بطرس الرسول</h2>
+    <!-- <p>Chief Financial Officer</p> -->
+  </div>
+  <div class="card" id="6" onclick="openDialog('popup-article', this)">
+    <img src="Groups/mattiass.jpg" alt="John Smith">
+    <h2>مجموعة القديس متياس الرسول</h2>
+    <!-- <p>Chief Technical Officer</p> -->
+  </div>
+  <div class="card" id="7" onclick="openDialog('popup-article', this)">
+    <img src="Groups/toma.jpg" alt="John Smith">
+    <h2>مجموعة القديس لوقا الطبيب</h2>
+    <!-- <p>Chief Legal Officer</p> -->
+  </div>
+  <div class="card" id="8" onclick="openDialog('popup-article', this)">
+    <img src="Groups/yohana.jpg" alt="John Smith">
+    <h2>مجموعة القديس برنابا الرسول</h2>
+    <!-- <p>HR M    anager</p> -->
+  </div>
+</section>
+<div id="popup-article" role="dialog" aria-labelledby="dialog_title" aria-modal="true">
+  <div class="popup">
+      <div class="popup__container">
+          <div class="popup__content">
+              <h2 id="dialog_title" class="neonText"></h2>
+<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+<thead>
+<tr></tr>
+</thead>
+<tbody></tbody>
+</table>
+          </div>
+          <button type="button" class="r-button popup__close" onclick="closeDialog(this)">
+              <span class="popup__close-text">اغلاق</span> 
+          </button>
+      </div>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="el3olya.js"></script>
