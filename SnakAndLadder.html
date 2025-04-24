@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لعبة السلم والثعبان - قيامة المسيح</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: #2c3e50;
+        }
+        
+        h1 {
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .game-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 900px;
+            gap: 20px;
+        }
+        
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 800px;
+            align-items: center;
+        }
+        
+        .players-info {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .game-area {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+        }
+        
+        .game-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .board {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            grid-template-rows: repeat(10, 1fr);
+            gap: 2px;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .cell {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .cell-number {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            font-size: 10px;
+            color: #6c757d;
+        }
+        
+        .player {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            position: absolute;
+            transition: all 0.5s ease;
+            z-index: 10;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+        }
+        
+
+        .player1 {
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23e74c3c' viewBox='0 0 24 24'><path d='M5,22H2V18a1,1,0,0,1,1-1H4a1,1,0,0,1,1,1Zm16-5H20a1,1,0,0,0-1,1v4h3V18A1,1,0,0,0,21,17ZM4,13H6v9h4.5V18.5a1.5,1.5,0,0,1,3,0V22H18V13h2L13,8V6h2V5h0V4H13V2H11V4H9V6h2V8Z'/></svg>");
+}
+
+        
+.player2 {
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%233498db' viewBox='0 0 24 24'><path d='M5,22H2V18a1,1,0,0,1,1-1H4a1,1,0,0,1,1,1Zm16-5H20a1,1,0,0,0-1,1v4h3V18A1,1,0,0,0,21,17ZM4,13H6v9h4.5V18.5a1.5,1.5,0,0,1,3,0V22H18V13h2L13,8V6h2V5h0V4H13V2H11V4H9V6h2V8Z'/></svg>");
+}
+
+        .connector {
+            position: absolute;
+            z-index: 5;
+            pointer-events: none;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+        
+        .ladder {
+            width: 40px !important;
+  height: 40px !important;
+
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M15,10 L25,10 L25,90 L15,90 Z M35,10 L45,10 L45,90 L35,90 Z M20,20 L40,20 M20,40 L40,40 M20,60 L40,60 M20,80 L40,80" stroke="%23a67c52" stroke-width="3" fill="none"/></svg>');
+        }
+        
+        .snake {
+            width: 40px !important;
+  height: 40px !important;
+
+    background-image: url('images/snake.png');
+    background-size: cover; /* Optional: ensures the image covers the element */
+    background-repeat: no-repeat; /* Optional: prevents tiling */
+    background-position: center; /* Optional: centers the image */
+}        
+        .connector-label {
+            position: absolute;
+            font-size: 10px;
+            background-color: rgba(255,255,255,0.9);
+            padding: 2px 4px;
+            border-radius: 3px;
+            z-index: 6;
+            font-weight: bold;
+            pointer-events: none;
+        }
+        
+        .ladder-label {
+            color: #a67c52;
+        }
+        
+        .snake-label {
+            color: #2ecc71;
+        }
+        
+        .player-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            min-width: 120px;
+        }
+        
+        .player-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+        
+        .player1-icon {
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23e74c3c' viewBox='0 0 24 24'><path d='M5,22H2V18a1,1,0,0,1,1-1H4a1,1,0,0,1,1,1Zm16-5H20a1,1,0,0,0-1,1v4h3V18A1,1,0,0,0,21,17ZM4,13H6v9h4.5V18.5a1.5,1.5,0,0,1,3,0V22H18V13h2L13,8V6h2V5h0V4H13V2H11V4H9V6h2V8Z'/></svg>");
+        }
+        
+        .player2-icon {
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%233498db' viewBox='0 0 24 24'><path d='M5,22H2V18a1,1,0,0,1,1-1H4a1,1,0,0,1,1,1Zm16-5H20a1,1,0,0,0-1,1v4h3V18A1,1,0,0,0,21,17ZM4,13H6v9h4.5V18.5a1.5,1.5,0,0,1,3,0V22H18V13h2L13,8V6h2V5h0V4H13V2H11V4H9V6h2V8Z'/></svg>");
+        }
+        
+        .current-player {
+            border: 2px solid #f39c12;
+        }
+        
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            width: 200px;
+        }
+        
+        .dice-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .dice {
+            width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+    border-radius: 10px;
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    color: white;
+        }
+        
+        .dice:hover {
+            transform: scale(1.05);
+        }
+        
+        .dice.rolling {
+            animation: roll 0.5s ease-out;
+        }
+        
+        @keyframes roll {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        .dice-label {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+       
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .question {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            line-height: 1.5;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .option {
+            padding: 10px 15px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .option:hover {
+            background-color: #e9ecef;
+        }
+        
+        .correct {
+            background-color: #2ecc71;
+            color: white;
+            border-color: #27ae60;
+        }
+        
+        .wrong {
+            background-color: #e74c3c;
+            color: white;
+            border-color: #c0392b;
+        }
+        
+        .result {
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 18px;
+        }
+        
+        .winner {
+            color: #f39c12;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 10px;
+            text-align: center;
+            display: none;
+        }
+        
+        /* Animation for player movement */
+        @keyframes moveUp {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        
+        .move-up {
+            animation: moveUp 0.5s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .game-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .game-area {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .game-container {
+                width: 350px;
+                height: 350px;
+            }
+            
+            .controls {
+                width: 350px;
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>لعبة السلم والثعبان - قيامة المسيح</h1>
+    
+    <div class="game-wrapper">
+       
+        
+        <div class="game-area">
+            <div class="game-header">
+                <div class="players-info">
+                    <div class="player-info" id="player1-info">
+                        <div class="player-icon player1-icon"></div>
+                        <span>اللاعب 1</span>
+                    </div>
+                    <div class="player-info" id="player2-info">
+                        <div class="player-icon player2-icon"></div>
+                        <span>اللاعب 2</span>
+                    </div>
+                </div>
+                
+             
+            </div>
+            <div class="game-container">
+                <div class="board" id="board"></div>
+            </div>
+            <div class="controls">
+                <div class="dice-container">
+                    <div class="dice-label">اضغط لرمي النرد</div>
+                    <div class="dice" id="dice">?</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="winner" id="winner"></div>
+    </div>
+    
+    <div class="modal" id="question-modal">
+        <div class="modal-content">
+            <div class="question" id="question-text"></div>
+            <div class="options" id="options-container"></div>
+            <div class="result" id="result-text"></div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Game elements
+            const board = document.getElementById('board');
+            const dice = document.getElementById('dice');
+            const questionModal = document.getElementById('question-modal');
+            const questionText = document.getElementById('question-text');
+            const optionsContainer = document.getElementById('options-container');
+            const resultText = document.getElementById('result-text');
+            const player1Info = document.getElementById('player1-info');
+            const player2Info = document.getElementById('player2-info');
+            const winnerText = document.getElementById('winner');
+            
+            // Game state
+            let currentPlayer = 1;
+            let playerPositions = [1, 1]; // Positions for player 1 and 2
+            let gameActive = true;
+            
+            // Questions about Resurrection of Jesus Christ (in Arabic)
+            const questions = [
+    {
+        question: "في أي يوم قام السيد المسيح من بين الأموات؟",
+        options: ["الجمعة العظيمة", "سبت النور", "أحد القيامة", "عيد العنصرة"],
+        correctAnswer: 2
+    },
+    {
+        question: "من كان أول من رأى المسيح بعد قيامته؟",
+        options: ["مريم المجدلية", "بطرس الرسول", "يوحنا الحبيب", "توما الرسول"],
+        correctAnswer: 0
+    },
+    {
+        question: "كم يوماً ظهر فيها المسيح لتلاميذه بعد القيامة؟",
+        options: ["10 أيام", "30 يوماً", "40 يوماً", "50 يوماً"],
+        correctAnswer: 2
+    },
+    {
+        question: "أين ظهر المسيح أولاً لتلاميذه بعد القيامة؟",
+        options: ["في الهيكل", "على جبل الزيتون", "في العلية", "على شاطئ البحيرة"],
+        correctAnswer: 2
+    },
+    {
+        question: "من هو التلميذ الذي شك في قيامة المسيح حتى وضع يده في جنبه؟",
+        options: ["بطرس", "يوحنا", "توما", "اندراوس"],
+        correctAnswer: 2
+    },
+    {
+        question: "ما هي المعجزة التي حدثت أثناء صيد السمك بعد القيامة؟",
+        options: ["تحويل الماء إلى خمر", "المشي على الماء", "153 سمكة كبيرة", "تهدئة العاصفة"],
+        correctAnswer: 2
+    },
+    {
+        question: "على أي جبل ظهر المسيح قبل الصعود؟",
+        options: ["جبل الجرمق", "جبل سيناء", "جبل الزيتون", "جبل طابور"],
+        correctAnswer: 2
+    },
+    {
+        question: "ماذا قال المسيح لتلاميذه قبل صعوده إلى السماء؟",
+        options: ["اذهبوا وتلمذوا جميع الأمم", "اغفروا يغفر لكم", "لا تدينوا لكي لا تدانوا", "احبوا أعداءكم"],
+        correctAnswer: 0
+    },
+    {
+        question: "من كانوا الشخصين اللذين ظهر لهما المسيح في طريق؟",
+        options: ["يعقوب ويوحنا", "بطرس واندراوس", "كليوباس ورفيقه", "فيليبس ونثنائيل"],
+        correctAnswer: 2
+    },
+    {
+        question: "ما هي المدينة التي كان التلميذان متجهين إليها عندما ظهر لهما المسيح؟",
+        options: ["أورشليم", "بيت لحم", "عمواس", "الناصرة"],
+        correctAnswer: 2
+    },
+    {
+        question: "ماذا فعل التلميذان عندما عرفا المسيح أثناء كسر الخبز؟",
+        options: ["أمسكوا به", "خرجا مسرعين", "سجدوا له", "عادوا إلى أورشليم"],
+        correctAnswer: 3
+    },
+    {
+        question: "كم مرة ظهر المسيح لتلاميذه مجتمعين؟",
+        options: ["مرة واحدة", "مرتين", "ثلاث مرات", "أكثر من خمس مرات"],
+        correctAnswer: 3
+    },
+    {
+        question: "ما هي أول كلمة قالها المسيح عندما دخل على التلاميذ في العلية؟",
+        options: ["سلام لكم", "لا تخافوا", "افرحوا", "هل عندكم شيء تأكلونه"],
+        correctAnswer: 0
+    },
+    {
+        question: "لماذا أعطى المسيح تلاميذه السلام عند ظهوره لهم؟",
+        options: ["لأنهم كانوا خائفين", "لأنهم كانوا مجتمعين للصلاة", "لأنهم كانوا ينتظرونه", "لأنهم كانوا يصلون"],
+        correctAnswer: 0
+    },
+    {
+        question: "ماذا فعل المسيح ليبرهن أنه ليس روحاً عندما ظهر للتلاميذ؟",
+        options: ["أراهم يديه وجنبه", "أكل قدامهم", "مشى على الماء", "كل ما سبق"],
+        correctAnswer: 3
+    },
+    {
+        question: "ما هي الوصية التي أعطاها المسيح لتلاميذه بعد القيامة؟",
+        options: ["أن يصوموا", "أن يذهبوا إلى العالم كله", "أن يبيعوا كل شيء", "أن يبنوا كنائس"],
+        correctAnswer: 1
+    },
+    {
+        question: "من الذي كان مع التلاميذ عندما صعد المسيح إلى السماء؟",
+        options: ["مريم المجدلية", "مريم أم يعقوب", "مريم العذراء", "سالومي"],
+        correctAnswer: 2
+    },
+    {
+        question: "ما هو آخر شيء فعله المسيح قبل صعوده إلى السماء؟",
+        options: ["بارك تلاميذه", "صلى لأجلهم", "غسل أقدامهم", "أعطاهم خبزاً"],
+        correctAnswer: 0
+    },
+    {
+        question: "كيف صعد المسيح إلى السماء؟",
+        options: ["في عاصفة", "في سحابة", "في مركبة نارية", "وهو يمشي على الهواء"],
+        correctAnswer: 1
+    },
+    {
+        question: "من هم الرجلان الذين ظهرا بعد صعود المسيح؟",
+        options: ["موسى وإيليا", "إيليا ويوحنا المعمدان", "رئيسا الملائكة ميخائيل وجبرائيل", "رجلان بلباس أبيض"],
+        correctAnswer: 3
+    },
+    {
+        question: "ماذا قال الرجلان للتلاميذ بعد الصعود؟",
+        options: ["هذا هو ابن الله", "هوذا يأتي ثانية", "لماذا توقفتم هنا؟", "هذا يسوع سيرجع كما رأيتموه"],
+        correctAnswer: 3
+    },
+    {
+        question: "إلى أين ذهب التلاميذ بعد صعود المسيح؟",
+        options: ["إلى الجليل", "إلى السامرة", "إلى الهيكل", "إلى العلية في أورشليم"],
+        correctAnswer: 3
+    },
+    {
+        question: "كم عدد التلاميذ الذين رأوا المسيح بعد القيامة؟",
+        options: ["أكثر من 500 شخص", "120 شخصاً", "70 تلميذاً", "12 تلميذاً فقط"],
+        correctAnswer: 0
+    },
+    {
+        question: "ما هي المعجزة التي حدثت عند بحيرة طبرية؟",
+        options: ["شفاء أعمى", "إشباع 5000", "153 سمكة كبيرة", "تحويل الماء إلى خمر"],
+        correctAnswer: 2
+    },
+    {
+        question: "من الذي قال ربي وإلهي عندما رأى المسيح؟",
+        options: ["بطرس", "يوحنا", "توما", "نثنائيل"],
+        correctAnswer: 2
+    },
+    {
+        question: "كم مرة ظهر المسيح لبطرس منفرداً؟",
+        options: ["مرة واحدة", "مرتين", "ثلاث مرات", "لم يظهر له منفرداً"],
+        correctAnswer: 2
+    },
+    {
+        question: "ما هي الأسئلة التي سألها المسيح لبطرس عند بحيرة طبرية؟",
+        options: ["أتحبني؟", "أتؤمن بي؟", "أتتبعني؟", "أتخدمني؟"],
+        correctAnswer: 0
+    },
+    {
+        question: "كم مرة كرر المسيح السؤال على بطرس؟",
+        options: ["مرة واحدة", "مرتين", "ثلاث مرات", "أربع مرات"],
+        correctAnswer: 2
+    },
+    {
+        question: "ماذا كان بطرس يفعل عندما ظهر له المسيح عند البحيرة؟",
+        options: ["يصلي", "يعظ", "يصطاد", "يقرأ الكتب"],
+        correctAnswer: 2
+    },
+    {
+        question: "ما هي النبوءة التي أعطاها المسيح لبطرس عن نهايته؟",
+        options: ["أنه سيموت شهيداً", "أنه سينكر المسيح", "أنه سيبشر في روما", "أنه سيعيش طويلاً"],
+        correctAnswer: 0
+    },
+    {
+        question: "من هو التلميذ الذي قال عنه المسيح إن شئت أن يبقى حتى أجيء؟",
+        options: ["بطرس", "يوحنا", "يعقوب", "اندراوس"],
+        correctAnswer: 1
+    },
+    {
+        question: "ما هو لقب يعقوب ويوحنا ابني زبدي؟",
+        options: ["الحبيب والملقب", "بوانرجس أي ابني الرعد", "المختارين", "الرسولين العظيمين"],
+        correctAnswer: 1
+    },
+    {
+        question: "أين كان التلاميذ عندما ظهر لهم المسيح أول مرة بعد القيامة؟",
+        options: ["في الهيكل", "في السامرة", "في العلية", "على البحر"],
+        correctAnswer: 2
+    },
+    {
+        question: "ما هو رد فعل التلاميذ عندما رأوا المسيح أول مرة بعد القيامة؟",
+        options: ["فرحوا", "خافوا وظنوه روحاً", "شكوا", "سجدوا له"],
+        correctAnswer: 1
+    },
+    {
+        question: "ماذا فعل المسيح ليثبت للتلاميذ أنه هو بعينه الذي صلب؟",
+        options: ["أراهم يديه ورجليه", "أكل قدامهم", "تكلم بصوته المعتاد", "كل ما سبق"],
+        correctAnswer: 3
+    },
+    {
+        question: "ما هي المهمة التي أعطاها المسيح لتلاميذه بعد القيامة؟",
+        options: ["بناء الكنائس", "كتابة الأناجيل", "الكهنوت", "مغفرة الخطايا"],
+        correctAnswer: 3
+    },
+    {
+        question: "من الذي كان غائباً عند أول ظهور للمسيح للتلاميذ؟",
+        options: ["بطرس", "يوحنا", "توما", "متى"],
+        correctAnswer: 2
+    },
+    {
+        question: "ما هو الشرط الذي وضعه توما ليؤمن بالقيامة؟",
+        options: ["أن يرى المسيح", "أن يضع يده في الجرح", "أن يأكل مع المسيح", "أن يرى المعجزات"],
+        correctAnswer: 1
+    },
+    {
+        question: "ماذا قال المسيح لتوما عندما ظهر له؟",
+        options: ["هل آمنت لأنك رأيتني؟", "لا تكن غير مؤمن بل مؤمناً", "طوبى للذين آمنوا ولم يروا", "كل ما سبق"],
+        correctAnswer: 3
+    },
+    {
+        question: "في أي مكان ظهر المسيح لسبعة من التلاميذ؟",
+        options: ["بحيرة طبرية", "نهر الأردن", "بحر الجليل", "بحر الميت"],
+        correctAnswer: 0
+    },
+    {
+        question: "ما هي المعجزة التي حدثت في ظهور المسيح لسبعة تلاميذ؟",
+        options: ["153 سمكة", "إشباع 5000", "المشي على الماء", "تهدئة العاصفة"],
+        correctAnswer: 0
+    },
+    {
+        question: "من الذي تعرف على المسيح أولاً في ظهوره لسبعة تلاميذ؟",
+        options: ["بطرس", "يوحنا", "توما", "اندراوس"],
+        correctAnswer: 1
+    },
+    {
+        question: "ماذا فعل بطرس عندما سمع أن الرب على الشاطئ؟",
+        options: ["أسرع بالسباحة", "اختبأ خوفاً", "استمر في الصيد", "نادى الآخرين"],
+        correctAnswer: 0
+    },
+    {
+        question: "ماذا كان على الشاطئ عندما وصل التلاميذ؟",
+        options: ["خبز وشواء", "سمك وخبز", "فاكهة وعسل", "خمر ولحم"],
+        correctAnswer: 1
+    },
+    {
+        question: "كم مرة نكر بطرس المسيح؟",
+        options: ["مرة واحدة", "مرتين", "ثلاث مرات", "لم ينكره"],
+        correctAnswer: 2
+    },
+    {
+        question: "كم مرة أعطى المسيح بطرس فرصة ليعوض إنكاره؟",
+        options: ["مرة واحدة", "مرتين", "ثلاث مرات", "لم يعطه فرصة"],
+        correctAnswer: 2
+    },
+    {
+        question: "ما هي الوظيفة التي أعطاها المسيح لبطرس؟",
+        options: ["رعاية خرافه", "بناء الكنيسة", "كتابة الإنجيل", "التبشير للأمم"],
+        correctAnswer: 0
+    },
+    {
+        question: "ما هو اليوم الذي صعد فيه المسيح إلى السماء؟",
+        options: ["يوم القيامة", "بعد 40 يوماً", "بعد 50 يوماً", "يوم الخمسين"],
+        correctAnswer: 1
+    },
+    {
+        question: "من الذي شاهد صعود المسيح إلى السماء؟",
+        options: ["بطرس فقط", "التلاميذ فقط", "أكثر من 500 شخص", "التلاميذ ومريم العذراء"],
+        correctAnswer: 1
+    },
+    {
+        question: "إلى أين توجّه التلاميذ بعد صعود المسيح؟",
+        options: ["إلى الجليل", "إلى السامرة", "إلى أورشليم", "إلى الأمم"],
+        correctAnswer: 2
+    },
+    {
+        question: "ماذا كان التلاميذ يفعلون بعد الصعود؟",
+        options: ["يبشرون", "يصومون", "يصلون بانتظار الروح القدس", "يبنون الكنائس"],
+        correctAnswer: 2
+    },
+    {
+        question: "كم كان عدد التلاميذ المجتمعين في العلية بعد الصعود؟",
+        options: ["12", "70", "120", "500"],
+        correctAnswer: 2
+    },
+    {
+        question: "من الذي اختاروه ليحل محل يهوذا؟",
+        options: ["متياس", "برنابا", "استفانوس", "بولس"],
+        correctAnswer: 0
+    }
+];
+            
+            // Snakes and ladders configuration with clear labels
+            const snakesAndLadders = {
+                // Ladders (start: end)
+                3: {end: 12, label: "3 ← 12"},
+                7: {end: 29, label: "7 ← 29"},
+                15: {end: 37, label: "15 ← 37"},
+                22: {end: 42, label: "22 ← 42"},
+                28: {end: 53, label: "28 ← 53"},
+                41: {end: 79, label: "41 ← 79"},
+                // Snakes (start: end)
+                17: {end: 4, label: "17 → 4"},
+                31: {end: 14, label: "31 → 14"},
+                38: {end: 20, label: "38 → 20"},
+                54: {end: 34, label: "54 → 34"},
+                62: {end: 43, label: "62 → 43"},
+                64: {end: 60, label: "64 → 60"},
+                70: {end: 49, label: "70 → 49"},
+                76: {end: 63, label: "76 → 63"},
+                88: {end: 67, label: "88 → 67"},
+                92: {end: 72, label: "92 → 72"},
+                95: {end: 75, label: "95 → 75"},
+                99: {end: 80, label: "99 → 80"}
+            };
+            
+            // Initialize the board
+            function initializeBoard() {
+                board.innerHTML = '';
+                
+                // Create cells in reverse order for snake and ladder game
+                for (let row = 9; row >= 0; row--) {
+                    for (let col = 0; col < 10; col++) {
+                        const cellNumber = (row % 2 === 0) ? (row * 10 + col + 1) : (row * 10 + (10 - col));
+                        const cell = document.createElement('div');
+                        cell.className = 'cell';
+                        cell.dataset.number = cellNumber;
+                        
+                        const cellNumberSpan = document.createElement('span');
+                        cellNumberSpan.className = 'cell-number';
+                        cellNumberSpan.textContent = cellNumber;
+                        cell.appendChild(cellNumberSpan);
+                        
+                        board.appendChild(cell);
+                    }
+                }
+                
+                // Add snakes and ladders
+                addSnakesAndLadders();
+                
+                // Initialize players
+                initializePlayers();
+            }
+            
+            // Add snakes and ladders to the board with labels
+            function addSnakesAndLadders() {
+                Object.keys(snakesAndLadders).forEach(start => {
+                    const {end, label} = snakesAndLadders[start];
+                    const startCell = document.querySelector(`.cell[data-number="${start}"]`);
+                    const endCell = document.querySelector(`.cell[data-number="${end}"]`);
+                    
+                    if (!startCell || !endCell) return;
+                    
+                    const startRect = startCell.getBoundingClientRect();
+                    const endRect = endCell.getBoundingClientRect();
+                    const boardRect = board.getBoundingClientRect();
+                    
+                    const startX = startRect.left + startRect.width / 2 - boardRect.left;
+                    const startY = startRect.top + startRect.height / 2 - boardRect.top;
+                    const endX = endRect.left + endRect.width / 2 - boardRect.left;
+                    const endY = endRect.top + endRect.height / 2 - boardRect.top;
+                    
+                    // Create connector (ladder or snake)
+                    const connector = document.createElement('div');
+                    connector.className = start < end ? 'ladder connector' : 'snake connector';
+                    
+                    // Calculate connector dimensions and position
+                    const width = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+                    const height = start < end ? 20 : 15;
+                    const angle = Math.atan2(endY - startY, endX - startX);
+                    
+                    connector.style.width = `${width}px`;
+                    connector.style.height = `${height}px`;
+                    connector.style.left = `${startX}px`;
+                    connector.style.top = `${startY - height/2}px`;
+                    connector.style.transformOrigin = '0 50%';
+                    connector.style.transform = `rotate(${angle}rad)`;
+                    
+                    board.appendChild(connector);
+                    
+                    // Add label at the middle of the connector
+                    const labelElement = document.createElement('div');
+                    labelElement.className = start < end ? 'ladder-label connector-label' : 'snake-label connector-label';
+                    labelElement.textContent = label;
+                    
+                    // Position label at the middle point
+                    const midX = (startX + endX) / 2;
+                    const midY = (startY + endY) / 2;
+                    
+                    // Adjust label position based on angle to make it readable
+                    const angleDeg = angle * (180 / Math.PI);
+                    let labelOffsetX = 0;
+                    let labelOffsetY = 0;
+                    
+                    if (angleDeg > 45 && angleDeg < 135) {
+                        labelOffsetX = 15;
+                    } else if (angleDeg > -135 && angleDeg < -45) {
+                        labelOffsetX = -15;
+                    } else if (angleDeg >= -45 && angleDeg <= 45) {
+                        labelOffsetY = -10;
+                    } else {
+                        labelOffsetY = 10;
+                    }
+                    
+                    labelElement.style.left = `${midX - 15 + labelOffsetX}px`;
+                    labelElement.style.top = `${midY - 8 + labelOffsetY}px`;
+                    
+                    board.appendChild(labelElement);
+                });
+            }
+            
+            // Initialize players on the board
+            function initializePlayers() {
+                // Remove existing players
+                document.querySelectorAll('.player').forEach(el => el.remove());
+                
+                // Add player 1
+                const player1 = document.createElement('div');
+                player1.className = 'player player1';
+                player1.id = 'player1';
+                board.appendChild(player1);
+                updatePlayerPosition(1, 1);
+                
+                // Add player 2
+                const player2 = document.createElement('div');
+                player2.className = 'player player2';
+                player2.id = 'player2';
+                board.appendChild(player2);
+                updatePlayerPosition(2, 1);
+                
+                // Set current player
+                setCurrentPlayer(currentPlayer);
+            }
+            
+            // Update player position on the board
+            function updatePlayerPosition(player, position) {
+                const playerElement = document.getElementById(`player${player}`);
+                const cell = document.querySelector(`.cell[data-number="${position}"]`);
+                
+                if (!cell || !playerElement) return;
+                
+                const cellRect = cell.getBoundingClientRect();
+                const boardRect = board.getBoundingClientRect();
+                
+                // Position the player in the cell with offset for two players
+                const offset = player === 1 ? -10 : 10;
+                playerElement.style.left = `${cellRect.left - boardRect.left + cellRect.width / 2 - 12 + offset}px`;
+                playerElement.style.top = `${cellRect.top - boardRect.top + cellRect.height / 2 - 12}px`;
+                
+                // Bring player to front
+                playerElement.style.zIndex = '10';
+                
+                // Apply movement animation
+                playerElement.classList.add('move-up');
+                setTimeout(() => {
+                    playerElement.classList.remove('move-up');
+                }, 500);
+            }
+            
+            // Set the current player
+            function setCurrentPlayer(player) {
+                currentPlayer = player;
+                
+                if (player === 1) {
+                    player1Info.classList.add('current-player');
+                    player2Info.classList.remove('current-player');
+                } else {
+                    player1Info.classList.remove('current-player');
+                    player2Info.classList.add('current-player');
+                }
+            }
+            
+            // Roll the dice
+            function rollDice() {
+                if (!gameActive) return;
+                
+                dice.classList.add('rolling');
+                dice.textContent = '...';
+                
+                setTimeout(() => {
+                    const diceValue = Math.floor(Math.random() * 6) + 1;
+                    dice.textContent = diceValue;
+                    dice.classList.remove('rolling');
+                    
+                    // Show question modal
+                    showQuestion(diceValue);
+                }, 1000);
+            }
+            
+            // Show question modal
+            function showQuestion(diceValue) {
+                if (!gameActive) return;
+                
+                const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
+                questionText.textContent = randomQuestion.question;
+                optionsContainer.innerHTML = '';
+                resultText.textContent = '';
+                
+                randomQuestion.options.forEach((option, index) => {
+                    const optionElement = document.createElement('div');
+                    optionElement.className = 'option';
+                    optionElement.textContent = option;
+                    optionElement.dataset.index = index;
+                    
+                    optionElement.addEventListener('click', () => {
+                        checkAnswer(index, randomQuestion.correctAnswer, diceValue);
+                    });
+                    
+                    optionsContainer.appendChild(optionElement);
+                });
+                
+                questionModal.style.display = 'flex';
+            }
+            
+            // Check the answer
+            function checkAnswer(selectedIndex, correctIndex, diceValue) {
+                const options = document.querySelectorAll('.option');
+                
+                options.forEach((option, index) => {
+                    if (index === correctIndex) {
+                        option.classList.add('correct');
+                    } else if (index === selectedIndex && index !== correctIndex) {
+                        option.classList.add('wrong');
+                    }
+                    
+                    option.style.pointerEvents = 'none';
+                });
+                
+                if (selectedIndex === correctIndex) {
+                    resultText.textContent = 'إجابة صحيحة! يمكنك الاستمرار.';
+                    setTimeout(() => {
+                        questionModal.style.display = 'none';
+                        movePlayer(diceValue);
+                    }, 1500);
+                } else {
+                    resultText.textContent = 'إجابة خاطئة! سيتم تخطي دورك.';
+                    setTimeout(() => {
+                        questionModal.style.display = 'none';
+                        switchPlayer();
+                    }, 1500);
+                }
+            }
+            
+            // Move the player
+            function movePlayer(steps) {
+                let newPosition = playerPositions[currentPlayer - 1] + steps;
+                
+                // Check if player won
+                if (newPosition >= 100) {
+                    newPosition = 100;
+                    gameActive = false;
+                    winnerText.textContent = `اللاعب ${currentPlayer} فاز! المسيح قام!`;
+                    winnerText.style.display = 'block';
+                }
+                
+                // Check for snake or ladder
+                if (snakesAndLadders[newPosition]) {
+                    const destination = snakesAndLadders[newPosition].end;
+                    const isLadder = destination > newPosition;
+                    
+                    setTimeout(() => {
+                        newPosition = destination;
+                        playerPositions[currentPlayer - 1] = newPosition;
+                        updatePlayerPosition(currentPlayer, newPosition);
+                        
+                        if (newPosition === 100) {
+                            gameActive = false;
+                            winnerText.textContent = `اللاعب ${currentPlayer} فاز! المسيح قام!`;
+                            winnerText.style.display = 'block';
+                        } else {
+                            switchPlayer();
+                        }
+                    }, 800);
+                } else {
+                    playerPositions[currentPlayer - 1] = newPosition;
+                }
+                
+                updatePlayerPosition(currentPlayer, newPosition);
+                
+                if (newPosition < 100 && !snakesAndLadders[newPosition]) {
+                    setTimeout(() => {
+                        switchPlayer();
+                    }, 800);
+                }
+            }
+            
+            // Switch to the next player
+            function switchPlayer() {
+                setCurrentPlayer(currentPlayer === 1 ? 2 : 1);
+            }
+            
+            // Restart the game
+            function restartGame() {
+                playerPositions = [1, 1];
+                currentPlayer = 1;
+                gameActive = true;
+                winnerText.style.display = 'none';
+                initializePlayers();
+                setCurrentPlayer(1);
+            }
+            
+            // Event listeners
+            dice.addEventListener('click', rollDice);
+            
+            // Initialize the game
+            initializeBoard();
+        });
+    </script>
+</body>
+</html>
